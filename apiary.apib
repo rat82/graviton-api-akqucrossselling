@@ -10,9 +10,9 @@ The request will need to be sent with a valid authToken Cookie as requested from
 All the JSON exmaples in this documentation have been formatted for convenience. Please take into account that they will
 not contain as much whitespace on the final system.
 
-## Akqucrossselling Entries
+## Akqucrossselling Entries <entities>
 
-Entris stored in the module.
+Entries stored in the module.
 
 ### Akqucrossselling Collection [/kunde/akqucrossselling]
 
@@ -26,6 +26,7 @@ This resource collection returns all the existing akqucrossselling entries in th
     
             X-REST-Request: true
             Cookie: authToken=1234567890abcdef1234
+            Accept: application/json
 
 
     + Body
@@ -80,7 +81,7 @@ Create a new akqucrossselling entry.
 The api must only create the top level contents (ie. it must not contain any nested sets like ``ACAdressSource`` or ``StatusCode``).
 Linking nested sets may be added by first creating a resource (ie. ``ACAdressSource``) and then using the returned ID in the corresponding field (ie. ``a_c_address_source_id``).
 
-The following elements must be set according to their definition in the Settings. (@todo define settings endpoints)
+The following elements must be set according to their ``id`` in the value endpoints defined below.
 
 * ``status``
 * ``subject``
@@ -91,6 +92,7 @@ The following elements must be set according to their definition in the Settings
     
             X-REST-Request: true
             Cookie: authToken=1234567890abcdef1234
+            Accept: application/json
 
     + Body
     
@@ -180,6 +182,7 @@ This resource may be used to access a single akqucrossselling entry in the syste
     
             X-REST-Request: true
             Cookie: authToken=1234567890abcdef1234
+            Accept: application/json
 
     + Body
     
@@ -232,7 +235,7 @@ Most info pertaining to creating akqucrossselling entries are also valid for upd
 
 Linking nested sets may be updated by first creating a resource (ie. ``ACAdressSource``) and then using the returned ID in the corresponding field (ie. ``a_c_address_source_id``).
 
-The following elements must be set according to their definition in the Settings. (@todo define settings endpoints)
+The following elements must be set according to their ``id`` in the Settings in the value endpoints defined below.
 
 * ``status``
 * ``subject``
@@ -243,6 +246,7 @@ The following elements must be set according to their definition in the Settings
     
             X-REST-Request: true
             Cookie: authToken=1234567890abcdef1234
+            Accept: application/json
 
     + Body
     
@@ -319,3 +323,73 @@ The following elements must be set according to their definition in the Settings
                 "subject": 392, 
                 "valid_to": null
             }
+
+
+
+
+### Status Values [/kunde/aqkucrossstatus]
+
+Allowed entries for ``status`` field.
+
+#### Get available Status Entries [GET]
+
++ Request
+
+    + Header
+    
+            X-REST-Request: true
+            Cookie: authToken=1234567890abcdef1234
+            Accept: application/json
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "114": "offen/geplant",
+                "381": "Produktverkauf/Abschluss Bank",
+                "385": "Vermittlung",
+                "384": "Nachfassen",
+                "112": "kein Abschluss",
+                "383": "Angebot/Offerte",
+                "382": "Beratung",
+                "113": "Abschluss Fremdbank"
+            }
+
+
+### Thema Values [/kunde/aqkucrossthema]
+
+Allowed entries for ``thema`` field.
+
+#### Get available Thema Entries [GET]
+
++ Request
+
+    + Header
+    
+            X-REST-Request: true
+            Cookie: authToken=1234567890abcdef1234
+            Accept: application/json
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "386": "Anlegen", 
+                "387": "Finanzieren PK", 
+                "388": "Finanzieren FK", 
+                "389": "Verkaufspackage", 
+                "390": "Vorsorge 2. S\u00e4ule", 
+                "391": "Zahlen", 
+                "392": "Finanzplanung", 
+                "393": "VPB", 
+                "394": "Vorsorge 3. S\u00e4ule", 
+                "395": "ZV / eBanking", 
+                "396": "Karten / Zahlungsmittel", 
+                "397": "Sparen", 
+                "398": "cashgate", 
+                "399": "Pensionierungsplanung", 
+                "640662": "Diverses"
+            }
+
