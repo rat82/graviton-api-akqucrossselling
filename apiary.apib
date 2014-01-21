@@ -1,0 +1,224 @@
+FORMAT: 1A
+HOST: http://www.google.com
+
+# Graviton API: Akqucrossselling
+
+The graviton akqucrossselling API allows read/write access to data in the backend.
+
+The request will need to be sent with a valid authToken Cookie as requested from /default/auth.
+
+All the JSON exmaples in this documentation have been formatted for convenience. Please take into account that they will
+not contain as much whitespace on the final system.
+
+## Akqucrossselling Entries
+
+Entris stored in the module.
+
+### Akqucrossselling Collection [/kunde/akqucrossselling]
+
+#### List all Akqucrossselling Entries [GET]
+
+This resource collection returns all the existing akqucrossselling entries in the system.
+
++ Request
+  
+    + Header
+    
+            X-REST-Request: true
+            Cookie: authToken=1234567890abcdef1234
+
+    + Body
+
++ Response 200 (application/json)
+
+    + Body
+
+            [
+                {
+                    "ACAdressSource": null, 
+                    "StatusCode": {
+                        "id": "114", 
+                        "name": "offen/geplant"
+                    }, 
+                    "SubjectCode": {
+                        "id": "392", 
+                        "name": "Finanzplanung"
+                    }, 
+                    "a_c_address_source_id": null, 
+                    "active": true, 
+                    "amount": 0, 
+                    "broker": null, 
+                    "comments": "This entry has a comment", 
+                    "created_at": "2014-01-17T11:20:45+0100", 
+                    "created_by": "THEUSER000", 
+                    "customer_key": 12312312, 
+                    "date_of_acquisition": "2014-01-17", 
+                    "due": "0000-00-00", 
+                    "edited_by": null, 
+                    "foreign_bank": null, 
+                    "foreign_bank_interest": null, 
+                    "hist_id": 0, 
+                    "id": 1, 
+                    "interest_deviance": null, 
+                    "last_mut_at": "2014-01-17T11:20:45+0100", 
+                    "last_mut_by": null, 
+                    "mandate": 1005, 
+                    "reason": null, 
+                    "responsible": "OTHRUSR000",
+                    "seg_opening": "PK1", 
+                    "status": 114, 
+                    "subject": 392, 
+                    "valid_to": null
+                }
+            ]
+            
+#### Create new Akqucrossselling Entries [POST]
+
+Create a new akqucrossselling entry.
+
+The api must only create the top level contents (ie. it must not contain any nested sets like ``ACAdressSource`` or ``StatusCode``).
+Linking nested sets may be added by first creating a resource (ie. ``ACAdressSource``) and then using the returned ID in the corresponding field (ie. ``a_c_address_source_id``).
+
+The following elements must be set according to their definition in the Settings. (@todo define settings endpoints)
+
+* ``status``
+* ``subject``
+
++ Request (application/json)
+
+    + Header
+    
+            X-REST-Request: true
+            Cookie: authToken=1234567890abcdef1234
+
+    + Body
+    
+            {
+                "a_c_address_source_id": null, 
+                "active": true, 
+                "amount": 0, 
+                "broker": null, 
+                "comments": "new record with comment", 
+                "created_at": null,
+                "created_by": null,
+                "customer_key": 12312312,
+                "date_of_acquisition": "2014-01-17", 
+                "due": "0000-00-00", 
+                "edited_by": null, 
+                "foreign_bank": null, 
+                "foreign_bank_interest": null, 
+                "hist_id": null, 
+                "id": null, 
+                "interest_deviance": null, 
+                "last_mut_at": null, 
+                "last_mut_by": null, 
+                "mandate": 6300, 
+                "reason": null, 
+                "responsible": "OTHRUSR00", 
+                "seg_opening": "PK1", 
+                "status": 114, 
+                "subject": 392, 
+                "valid_to": null
+            }
+
+    
++ Response 201
+
+    + Header
+    
+            Location: /kunde/akqucrossselling/4; rel="self"
+            
+    + Body
+    
+            {
+                "ACAdressSource": null, 
+                "StatusCode": {
+                    "id": "114", 
+                    "name": "offen/geplant"
+                }, 
+                "SubjectCode": {
+                    "id": "392", 
+                    "name": "Finanzplanung"
+                }, 
+                "a_c_address_source_id": null, 
+                "active": true, 
+                "amount": 0, 
+                "broker": null, 
+                "comments": "new record with comment", 
+                "created_at": "2014-01-17T11:20:45+0100",
+                "created_by": "THEUSER000", 
+                "customer_key": 12312312,
+                "date_of_acquisition": "2014-01-17", 
+                "due": "0000-00-00", 
+                "edited_by": null, 
+                "foreign_bank": null, 
+                "foreign_bank_interest": null, 
+                "hist_id": null, 
+                "id": 4, 
+                "interest_deviance": null, 
+                "last_mut_at": null, 
+                "last_mut_by": null, 
+                "mandate": 6300, 
+                "reason": null, 
+                "responsible": "OTHRUSR00", 
+                "seg_opening": "PK1", 
+                "status": 114, 
+                "subject": 392, 
+                "valid_to": null
+            }
+
+### Akqucrossselling Resources [/kunde/akqucrossselling/{id}]
+
+This resource may be used to access a single akqucrossselling entry in the system.
+
+#### Get Single Akqucrossselling Entry [GET]
+
++ Request
+
+    + Header
+    
+            X-REST-Request: true
+            Cookie: authToken=1234567890abcdef1234
+
+    + Body
+    
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "ACAdressSource": null, 
+                "StatusCode": {
+                    "id": "114", 
+                    "name": "offen/geplant"
+                }, 
+                "SubjectCode": {
+                    "id": "392", 
+                    "name": "Finanzplanung"
+                }, 
+                "a_c_address_source_id": null, 
+                "active": true, 
+                "amount": 0, 
+                "broker": null, 
+                "comments": "This entry has a comment", 
+                "created_at": "2014-01-17T11:20:45+0100", 
+                "created_by": "THEUSER000", 
+                "customer_key": 12312312, 
+                "date_of_acquisition": "2014-01-17", 
+                "due": "0000-00-00", 
+                "edited_by": null, 
+                "foreign_bank": null, 
+                "foreign_bank_interest": null, 
+                "hist_id": 0, 
+                "id": 1, 
+                "interest_deviance": null, 
+                "last_mut_at": "2014-01-17T11:20:45+0100", 
+                "last_mut_by": null, 
+                "mandate": 1005, 
+                "reason": null, 
+                "responsible": "OTHRUSR000",
+                "seg_opening": "PK1", 
+                "status": 114, 
+                "subject": 392, 
+                "valid_to": null
+            }
