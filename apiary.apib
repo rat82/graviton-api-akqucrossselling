@@ -4,7 +4,7 @@ FORMAT: 1A
 
 The graviton akqucrossselling API allows read/write access to data in the backend.
 
-The request will need to be sent with a valid authToken Cookie as requested from ``/default/auth``.
+All requests need to be sent with a valid ``authToken={authToken}`` Cookie as requested from [the ``/auth`` API](http://docs.gravitonapiauth.apiary.io/).
 
 All the JSON examples in this documentation have been formatted for convenience. Please take into account that they will
 not contain as much whitespace on the final system.
@@ -66,7 +66,7 @@ This resource collection returns all the existing akqucrossselling entries in th
     + Header
     
             X-REST-Request: true
-            Cookie: authToken=1234567890abcdef1234
+            Cookie: authToken={authToken}
             Accept: application/json
 
 
@@ -132,7 +132,7 @@ The following elements must be set according to their ``id`` in the value endpoi
     + Header
     
             X-REST-Request: true
-            Cookie: authToken=1234567890abcdef1234
+            Cookie: authToken={authToken}
             Accept: application/json
 
     + Body
@@ -217,15 +217,16 @@ This resource may be used to access a single akqucrossselling entry in the syste
 
 ##### Get a single akqucrossselling entry. [GET]
 
++ Parameters
+    + id (required, number, `1`) ... Id of an akqucrossselling entry.
+
 + Request
 
     + Header
     
             X-REST-Request: true
-            Cookie: authToken=1234567890abcdef1234
+            Cookie: authToken={authToken}
             Accept: application/json
-
-    + Body
     
 + Response 200 (application/json)
 
@@ -286,7 +287,7 @@ The following elements must be set according to their ``id`` in the Settings in 
     + Header
     
             X-REST-Request: true
-            Cookie: authToken=1234567890abcdef1234
+            Cookie: authToken={authToken}
             Accept: application/json
 
     + Body
@@ -379,7 +380,7 @@ Allowed entries for ``status`` field.
     + Header
     
             X-REST-Request: true
-            Cookie: authToken=1234567890abcdef1234
+            Cookie: authToken={authToken}
             Accept: application/json
 
 + Response 200 (application/json)
@@ -409,7 +410,7 @@ Allowed entries for ``thema`` field.
     + Header
     
             X-REST-Request: true
-            Cookie: authToken=1234567890abcdef1234
+            Cookie: authToken={authToken}
             Accept: application/json
 
 + Response 200 (application/json)
