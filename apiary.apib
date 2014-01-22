@@ -9,13 +9,55 @@ The request will need to be sent with a valid authToken Cookie as requested from
 All the JSON examples in this documentation have been formatted for convenience. Please take into account that they will
 not contain as much whitespace on the final system.
 
-## Akqucrossselling Entries <entities>
+## Group Akqucrossselling Entries
 
-Entries stored in the module.
+API Endpoints for accessing akqucrosselling entries.
 
-### Akqucrossselling Collection [/kunde/akqucrossselling]
+### Akqucrossselling Object
 
-#### List all Akqucrossselling Entries [GET]
+This endpoint supports working with akqucrosselling objects
+containing the following fields.
+
+Fields lacking documentation (Names and/or Description) are
+internal to the backend and should not be relied upon without
+further consideration.
+
+| Field                     | Name               | Name (German)         | Description                                                                                |
+|:------------------------- |:------------------ |:--------------------- |:------------------------------------------------------------------------------------------ |
+| ``ACAdressSource``        | Address Source     |                       |                                                                                            |
+| ``StatusCode``            | State              | Status/Qualität       | contains the status object as nested subset, update ``status`` field with new id to modify |
+| ``SubjectCode``           | Subject            | Thema/Notizcode       | contains the thema object as nested subset, update ``thema`` field with new id to modify   |
+| ``a_c_address_source_id`` |                    |                       |                                                                                            |
+| ``active``                |                    |                       |                                                                                            |
+| ``amount``                | Amount             | Volumen               |                                                                                            |
+| ``broker``                | Broker (Who)       | Broker (Wer)          |                                                                                            |
+| ``comments``              | Comment            | Kommentar             |                                                                                            |
+| ``created_at``            | Creation Date      | Erstellt am           |                                                                                            |
+| ``created_by``            | Created by         | Erstellt durch        |                                                                                            |
+| ``customer_key``          | Customer Number    | Kundennummer          |                                                                                            |
+| ``date_of_acquisition``   | Date               | Datum                 |                                                                                            |
+| ``due``                   | Due Date           | Fälligkeit            |                                                                                            |
+| ``edited_by``             |                    |                       |                                                                                            |
+| ``foreign_bank``          |                    |                       |                                                                                            |
+| ``foreign_bank_interest`` |                    | Zinssatz Fremdbank    |                                                                                            |
+| ``hist_id``               |                    |                       |                                                                                            |
+| ``id``                    | ID                 | ID                    | unique identifier aka primary key                                                          |
+| ``interest_deviance``     |                    | Abweichung Zinssatz   |                                                                                            |
+| ``last_mut_at``           | Last Modification  | Letzte Bearbeitung    |  must be coalesced with ``created_at`` for display purposes                                |
+| ``last_mut_by``           |                    |                       |                                                                                            |
+| ``mandate``               |                    |                       |                                                                                            |
+| ``reason``                | Reason             | Grund                 |                                                                                            |
+| ``responsible``           | Responsible        | Verantwortlich        |                                                                                            |
+| ``seg_opening``           |                    |                       |                                                                                            |
+| ``status``                | State              | Status/Qualität       |                                                                                            |
+| ``subject``               | Subject            | Thema/Notizcode       |                                                                                            |
+| ``valid_to``              |                    |                       |                                                                                            |
+
+### Akqucrossselling Endpoints
+
+#### Akqucrossselling Collection Endpoint [/kunde/akqucrossselling]
+
+##### List all akqucrossselling entries. [GET]
 
 This resource collection returns all the existing akqucrossselling entries in the system.
 
@@ -73,7 +115,7 @@ This resource collection returns all the existing akqucrossselling entries in th
                 }
             ]
             
-#### Create new Akqucrossselling Entries [POST]
+##### Create a new akqucrossselling entry. [POST]
 
 Create a new akqucrossselling entry.
 
@@ -169,11 +211,11 @@ The following elements must be set according to their ``id`` in the value endpoi
                 "valid_to": null
             }
 
-### Akqucrossselling Resources [/kunde/akqucrossselling/{id}]
+#### Akqucrossselling Resource Endpoint [/kunde/akqucrossselling/{id}]
 
 This resource may be used to access a single akqucrossselling entry in the system.
 
-#### Get Single Akqucrossselling Entry [GET]
+##### Get a single akqucrossselling entry. [GET]
 
 + Request
 
@@ -226,7 +268,7 @@ This resource may be used to access a single akqucrossselling entry in the syste
                 "valid_to": null
             }
             
-#### Update existing Akqucrossselling Entries [PUT]
+##### Update an existing akqucrossselling entry. [PUT]
 
 Update an existing akqucrossselling entry.
 
@@ -326,11 +368,11 @@ The following elements must be set according to their ``id`` in the Settings in 
 
 
 
-### Status Values [/kunde/aqkucrossstatus]
+#### Status Values [/kunde/aqkucrossstatus]
 
 Allowed entries for ``status`` field.
 
-#### Get available Status Entries [GET]
+##### Get available status entries. [GET]
 
 + Request
 
@@ -356,11 +398,11 @@ Allowed entries for ``status`` field.
             }
 
 
-### Thema Values [/kunde/aqkucrossthema]
+#### Thema Values [/kunde/aqkucrossthema]
 
 Allowed entries for ``thema`` field.
 
-#### Get available Thema Entries [GET]
+##### Get available thema entries. [GET]
 
 + Request
 
@@ -391,4 +433,3 @@ Allowed entries for ``thema`` field.
                 "399": "Pensionierungsplanung", 
                 "640662": "Diverses"
             }
-
